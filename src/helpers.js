@@ -38,8 +38,8 @@ export const Protector = ({ Component }) => {
  
 
 
-  export const API_BASE_URL = "http://localhost:1337";
-  //  export const API_BASE_URL = "https://strapi-deployment-hzpa.onrender.com";
+  // export const API_BASE_URL = "http://localhost:1337";
+   export const API_BASE_URL = "https://two025-strapi.onrender.com";
 
 
 
