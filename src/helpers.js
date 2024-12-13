@@ -32,8 +32,8 @@ export const Protector = ({ Component }) => {
   
     return <Component />;
   };
-  export const SPRING_BASE_URL = "http://localhost:8080";
-  // export const SPRING_BASE_URL = "https://thunder-spring.onrender.com";
+  // export const SPRING_BASE_URL = "http://localhost:8080";
+  export const SPRING_BASE_URL = "https://thunder-spring.onrender.com";
 
  
 
