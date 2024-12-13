@@ -1,0 +1,89 @@
+/* MessagesPage.css */
+.messages-page {
+    background-color: #111;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .page-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .users {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .user {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #333;
+    border-radius: 10px;
+  }
+  
+  .user-info {
+    margin-bottom: 10px;
+  }
+  
+  .username {
+    font-size: 16px;
+    color: #bbb;
+  }
+  
+  .email {
+    font-size: 14px;
+    color: #aaa;
+  }
+  
+  .message-form {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .send-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  
+  .send-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .view-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    margin-left: 10px;
+  }
+  
+  .view-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  .success-message {
+    margin-top: 10px;
+    color: #28a745;
+  }
+  

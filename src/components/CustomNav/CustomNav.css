@@ -1,0 +1,89 @@
+.thunder-logo {
+  width: 60px; /* Adjust the size as needed */
+  height: 60px;
+  margin-right: 8px; /* Add spacing between the logo and text */
+}
+
+.custom-nav {
+  background-color: #212121;
+  border-bottom: 5px solid #ececec;
+  margin-top: -10px;
+margin-block-end: 1px; 
+}
+
+.gaming-navbar {
+  background-color: #f9f9f9;
+  border-bottom: 5px solid #000000;
+  
+}
+
+/* Navbar Brand */
+.gaming-brand {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #000000;
+  transition: color 0.3s;
+}
+
+.gaming-brand:hover {
+  color: #686766;
+}
+
+
+
+
+
+/* Navbar Links */
+.navbar-nav {
+  align-items: center;
+}
+
+.gaming-link {
+  font-size: 18px;
+  color: #000000;
+  transition: color 0.3s, background 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+  margin: 0 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.gaming-link:hover {
+  color: #fff;
+  background: linear-gradient(45deg, #686766, #8a8887);
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.gaming-bold {
+  font-weight: bold;
+}
+
+/* Log Out Button */
+.gaming-red {
+  color: red;
+  transition: color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+.gaming-red:hover {
+  color: #fff;
+  background: linear-gradient(45deg, #ff6666, #ff0000);
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Make the Thunder logo text bold */
+.thunder-logo,
+.gaming-link.gaming-red,
+.gaming-brand {
+  font-weight: bold;
+}
+
+/* Media queries and other styles as needed */
+
+@media (max-width: 576px) {
+  .navbar-toggler-icon {
+    font-size: 20px;
+  }
+}

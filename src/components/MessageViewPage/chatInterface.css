@@ -1,0 +1,76 @@
+/* chatInterface.css */
+.message-view-page {
+  background-color: #111;
+  color: #fff;
+  padding: 20px;
+  margin-top: 5px;
+
+  border-radius: 10px; /* Adjust the border-radius value as needed */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.message-view-page h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.message-view-page h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.message-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.message-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.message-list li {
+  margin-bottom: 10px;
+}
+
+.message {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 15px; /* Adjust the border-radius value as needed */
+}
+
+.message p {
+  margin: 0;
+}
+
+.message-timestamp {
+  font-size: 10px;
+  color: #aaaaaa;
+  font-weight: 600;
+}
+
+.message-input {
+  margin-top: 10px;
+}
+
+.message-input input[type="text"] {
+  width: 80%;
+  padding: 8px;
+  border: none;
+  border-radius: 15px; /* Adjust the border-radius value as needed */
+}
+
+.message-input button {
+  background-color: #076a17;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 15px; /* Adjust the border-radius value as needed */
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.message-input button:hover {
+  background-color: #0a4300;
+  transform: scale(1.05);
+}

@@ -1,0 +1,250 @@
+/* Posts.css */
+
+/* Center-align the header and add margin at the bottom */
+.posts-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Style the header text */
+.posts-header h1 {
+  font-size: 36px;
+  font-weight: bold;
+  font-style: italic;
+  color: #b7e100;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* Style the Create Spark button */
+.create-spark-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* Align items vertically in the container */
+  margin-bottom: 10px; /* Increased margin */
+}
+
+.create-spark-button button {
+  background-color: #9dde1b;
+  color: #000000;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+/* Style the posts container */
+.posts-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #fff;
+}
+
+/* Style the post cards */
+.post-card {
+  background-color: #222222;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative; /* Added for positioning timestamp */
+}
+
+/* Style the post image */
+.post-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Position the timestamp at the bottom right */
+.timestamp {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 14px;
+  color: #b7e100;
+}
+
+/* Style the post caption */
+.post-caption {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Style the post user */
+.post-user {
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+/* Style the post interactions */
+.post-interactions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically in the container */
+  font-size: 20px;
+}
+
+/* Style the interaction icons */
+.interaction-icon {
+  cursor: pointer;
+  color: #007bff;
+  display: flex; /* Added display: flex */
+  align-items: center; /* Align items vertically in the container */
+}
+
+.interaction-icon.like-icon::before {
+  content: '⚡️';
+  margin-right: 5px;
+}
+
+.comment-icon{
+  margin-left: 120px;
+  margin-right: auto;
+
+
+}
+
+
+/* Style the comment input and button */
+.comment-input {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 5px;
+
+ 
+  
+}
+
+.comment-input-field {
+  flex: 1;
+  border: 1px solid #b7e100;
+  border-radius: 25px;
+  padding: 8px 15px;
+  margin-right: 10px;
+  font-size: 16px;
+  color: #000;
+  background-color: #fff;
+}
+
+.comment-add-button {
+  background-color: #b7e100;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  padding: 5px 20px;
+  cursor: pointer;
+  
+  
+}
+
+
+.interaction-icon.comment-icon::before {
+  content: '💬';
+  margin-right: 5px;
+}
+
+/* Style the user thumbnail */
+.user-thumbnail {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #b7e100;
+  margin-right: 10px;
+}
+
+/* Style the post header */
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* Style the username with yellow border */
+.username {
+  font-size: 25px;
+  font-weight: bold;
+  color: #fff;
+  display: inline-block;
+  border-left: 2px solid #b7e100;
+  padding-left: 5px;
+}
+
+/* Style for the comments section */
+.post-comments {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  border-radius: 20px; /* Rounded corners */
+
+}
+
+/* Style for individual comments */
+.comment {
+  margin-bottom: 5px;
+  padding: 10px; /* Increased padding */
+  border: 1px solid #ffffff;
+  background-color: #4d4d4d;
+  border-radius: 20px; /* Rounded corners */
+}
+
+/* Style for comment text */
+.comment-text {
+  margin-left: 1px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.comment-details {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Style the "Commented by" text */
+.commented-by {
+  font-weight: bold;
+  color: #999;
+  margin-right: auto;
+}
+
+/* Style the "Commented at" text */
+.comment-date {
+  color: #999;
+  font-size: 12px;
+}
+
+  /* Style the image input and icon */
+  .file-input-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 7px;
+  }
+  
+  .image-input {
+    display: none; /* Hide the actual input */
+  }
+  
+  .image-icon {
+    font-size: 35px;
+  }
+  
+  /* Style the caption input */
+  .caption-input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    margin-left: 3px;
+
+  
+  }
+
