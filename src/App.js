@@ -12,6 +12,7 @@ import Profile from "./components/Profile";
 import MyImage from "./components/MyImage";
 import Posts from "./components/Posts";
 import VideoChat from "./components/VideoChat";
+import YourLocationMap from "./components/YourLocationMap";
 
 
 
@@ -69,6 +70,8 @@ function App() {
           <Route path="/images" element={<MyImage />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/video-chat/:id" element={<VideoChat />} />
+          <Route path="/your-location" element={<YourLocationMap />} /> {/* Add this route */}
+
 
 
 

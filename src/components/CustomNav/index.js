@@ -74,6 +74,11 @@ const CustomNav = () => {
                     Images
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} to="/your-location" className="gaming-link">
+                    My Location
+                  </NavLink>
+                </NavItem>
                 <NavItem className="ml-auto">
                   <NavLink tag={Link} to="/logout" className="gaming-link gaming-red">
                     Log Out
