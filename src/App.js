@@ -13,6 +13,9 @@ import MyImage from "./components/MyImage";
 import Posts from "./components/Posts";
 import VideoChat from "./components/VideoChat";
 import YourLocationMap from "./components/YourLocationMap";
+import FriendLocation from "./components/FriendLocation";
+
+
 
 
 
@@ -44,6 +47,8 @@ function App() {
     }
   }, []);
 
+ 
+
   const handleLogin = (token) => {
     localStorage.setItem("token", token);
     localStorage.setItem("loginTime", Date.now().toString());
@@ -71,6 +76,7 @@ function App() {
           <Route path="/posts" element={<Posts />} />
           <Route path="/video-chat/:id" element={<VideoChat />} />
           <Route path="/your-location" element={<YourLocationMap />} /> {/* Add this route */}
+          <Route path="/friend-location/:id" element={<FriendLocation/>} /> {/* Add this route */}
 
 
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
+import './YourLocationMap.css'; // Import the CSS file
 import L from 'leaflet';
 import CustomNav from "../CustomNav";
 import { Container } from "reactstrap";
@@ -64,16 +65,16 @@ const YourLocationMap = () => {
   return (
     <Container>
       <CustomNav />
-      <div style={{ height: "100vh", width: "100%" }}>
+      <div className="map-container">
         {position ? (
-          <div ref={mapRef} style={{ height: "100%", width: "100%" }}></div>
+          <div ref={mapRef} className="map-container"></div>
         ) : error ? (
-          <div style={{ textAlign: "center", padding: "20px" }}>
+          <div className="message-container">
             <h2>Error: {error}</h2>
             <p>Please ensure location services are enabled and reload the page.</p>
           </div>
         ) : (
-          <div style={{ textAlign: "center", padding: "20px" }}>
+          <div className="message-container">
             <h2>Loading your location...</h2>
           </div>
         )}
