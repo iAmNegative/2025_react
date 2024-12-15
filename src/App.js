@@ -14,15 +14,18 @@ import Posts from "./components/Posts";
 import VideoChat from "./components/VideoChat";
 import YourLocationMap from "./components/YourLocationMap";
 import FriendLocation from "./components/FriendLocation";
-
-
-
+import socket from "socket.io-client";
+import { API_BASE_URL } from "./helpers";
+import { userData } from "./helpers";
 
 
 
 
 function App() {
   const TOKEN_EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes in milliseconds
+
+  const socketInstance = socket(API_BASE_URL); // Initialize Socket.IO once
+
 
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -46,6 +49,41 @@ function App() {
       }
     }
   }, []);
+
+  useEffect(() => {
+  
+      socketInstance.on("findCord", (data) => {
+  
+            // console.log(` request code 2 :  reciver to user server ${targetUser1} and i am login as ${loggedInUserId} `);
+  
+  
+        const { targetUser1, senderUser1 } = data;
+        const loggedInUserId = userData().id; // Get the logged-in user's ID
+        
+        // console.log(`findLocationSend: Target user ${targetUser1}, Sender user ${senderUser1}`);
+  
+        // socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserId,
+        //   lan:  localStorage.getItem("lan"),
+        //   long:  localStorage.getItem("long"),
+        // });
+        console.log(` request code 2 :  reciver to user server ${targetUser1} and i am login as ${loggedInUserId} `);
+  
+        if (targetUser1 == loggedInUserId) {
+           
+          console.log(` request code 3 :  send to server : lan ${localStorage.getItem("lan")} ,  ${localStorage.getItem("long")} to  ${senderUser1} , and i am login as ${loggedInUserId} `);
+  
+          socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserId,
+            lan:  localStorage.getItem("lan"),
+            long:  localStorage.getItem("long"),
+          });
+  
+    
+        }
+  
+        
+      });
+  
+  },[]);
 
  
 

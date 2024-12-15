@@ -30,6 +30,7 @@ const FriendLocation = () => {
   useEffect(() => {
     // Notify backend to find location
     socketInstance.emit("findLocationSend", { targetUser, senderUser: loggedInUserId });
+    console.log(` request code 1 :  send to server `);
 
     // // Listen for location data
     // socketInstance.on("sendCordToSender", (data) => {
@@ -46,21 +47,27 @@ const FriendLocation = () => {
 
     socketInstance.on("findCord", (data) => {
 
+          // console.log(` request code 2 :  reciver to user server ${targetUser1} and i am login as ${loggedInUserId} `);
+
 
       const { targetUser1, senderUser1 } = data;
-      console.log(`findLocationSend: Target user ${targetUser1}, Sender user ${senderUser1}`);
+      // console.log(`findLocationSend: Target user ${targetUser1}, Sender user ${senderUser1}`);
 
       // socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserId,
       //   lan:  localStorage.getItem("lan"),
       //   long:  localStorage.getItem("long"),
       // });
+      console.log(` request code 2 :  reciver to user server ${targetUser1} and i am login as ${loggedInUserId} `);
 
       if (targetUser1 === loggedInUserId) {
-        
+         
+        console.log(` request code 3 :  send to server : lan ${localStorage.getItem("lan")} ,  ${localStorage.getItem("long")} to  ${senderUser1} , and i am login as ${loggedInUserId} `);
+
         socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserId,
           lan:  localStorage.getItem("lan"),
           long:  localStorage.getItem("long"),
         });
+
   
       }
 
