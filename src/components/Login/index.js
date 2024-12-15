@@ -45,8 +45,8 @@ const Login = () => {
             navigator.geolocation.getCurrentPosition(
               (pos) => {
                 console.log("Latitude:", pos.coords.latitude, "Longitude:", pos.coords.longitude);
-                localStorage.setItem("token", "0");
-                localStorage.setItem("loginTime", Date.now().toString());
+                localStorage.setItem("lan", pos.coords.latitude);
+                localStorage.setItem("long", pos.coords.longitude);
               },
               (err) => {
                 console.log("Geolocation error:", err.message);
