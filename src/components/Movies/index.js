@@ -19,17 +19,23 @@ const Movies = () => {
     setLoading(true);
     setError(null);
 
-    try {
-      const response = await axios.get(
-        `https://www.filmjabber.com/movie-release-dates/2025/${currentMonth}/`,
-        {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-          },
-        }
-      );
+    const options = {
+      method: 'POST',
+      url: 'https://http-cors-proxy.p.rapidapi.com/',
+      headers: {
+        'x-rapidapi-key': '7cfd5c7a86msh9bb0d440cd13288p1436e4jsnee71829833d2',
+        'x-rapidapi-host': 'http-cors-proxy.p.rapidapi.com',
+        'Content-Type': 'application/json',
+        Origin: 'www.example.com',
+        'X-Requested-With': 'www.example.com'
+      },
+      data: {
+        url: `https://www.filmjabber.com/movie-release-dates/2025/${currentMonth}/`
+      }
+    };
 
+    try {
+      const response = await axios.request(options);
       const html = response.data;
       const $ = load(html);
       const movieData = [];
