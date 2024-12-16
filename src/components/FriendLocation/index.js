@@ -22,6 +22,7 @@ const socketInstance = socket(API_BASE_URL); // Initialize Socket.IO once
 const FriendLocation = () => {
   const [position, setPosition] = useState(null);
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState("Your friend is here"); // Add a state for the dynamic message
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
   const loggedInUserId = userData().id; // Get the logged-in user's ID
@@ -32,71 +33,19 @@ const FriendLocation = () => {
     socketInstance.emit("findLocationSend", { targetUser, senderUser: loggedInUserId });
     console.log(` request code 1 :  send to server `);
 
-    // // Listen for location data
-    // socketInstance.on("sendCordToSender", (data) => {
-    //   const { senderUser, receiverUserLong, receiverUserLan } = data;
-    //   if (senderUser === loggedInUserId) {
-    //     setPosition([receiverUserLan, receiverUserLong]); // Set friend's position
-    //   }
-
-      
-    // });
-  }, [loggedInUserId, targetUser]);
-
-  useEffect(() => {
-
-    socketInstance.on("findCord", (data) => {
-
-          // console.log(` request code 2 :  reciver to user server ${targetUser1} and i am login as ${loggedInUserId} `);
-
-
-      const { targetUser1, senderUser1 } = data;
-      // console.log(`findLocationSend: Target user ${targetUser1}, Sender user ${senderUser1}`);
-
-      // socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserId,
-      //   lan:  localStorage.getItem("lan"),
-      //   long:  localStorage.getItem("long"),
-      // });
-      console.log(` request code 2 :  reciver to user server ${targetUser1} and i am login as ${loggedInUserId} `);
-
-      if (targetUser1 === loggedInUserId) {
-         
-        console.log(` request code 3 :  send to server : lan ${localStorage.getItem("lan")} ,  ${localStorage.getItem("long")} to  ${senderUser1} , and i am login as ${loggedInUserId} `);
-
-        socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserId,
-          lan:  localStorage.getItem("lan"),
-          long:  localStorage.getItem("long"),
-        });
-
-  
-      }
-
-      
-    });
-
-  }, [loggedInUserId, targetUser]);
-
-
-  useEffect(() => {
-
+    // Listen for location data
     socketInstance.on("sendCordToSender", (data) => {
+      const { senderUser1, targetUser1, lan, long } = data;
 
-      const { senderUser1 ,lan ,long} = data;
-
-      console.log(`sendCordToSender: SenderTTTT user ${senderUser1}`);
+      console.log(`sendCordToSender: Sender user ${senderUser1}`);
 
       if (senderUser1 === loggedInUserId) {
-        
-        console.log(`senderUser1 === loggedInUserId: Target user ${loggedInUserId}, Sender user ${senderUser1}`);
-
-         setPosition([lan, long]); // Set friend's position
+        console.log(`senderUser1 === loggedInUserId: Target user ${targetUser1}, Sender user ${senderUser1}`);
+        setMessage(`${targetUser1} is here!`); // Dynamically set the message with targetUser1
+        setPosition([lan, long]); // Set friend's position
       }
-
-      
     });
-
   }, [loggedInUserId, targetUser]);
-
 
   useEffect(() => {
     if (mapRef.current && !mapInstance.current) {
@@ -111,10 +60,10 @@ const FriendLocation = () => {
       mapInstance.current.setView(position, 13);
       L.marker(position, { icon: customIcon })
         .addTo(mapInstance.current)
-        .bindPopup(`Your friend is here!`)
+        .bindPopup(message) // Use the dynamic message here
         .openPopup();
     }
-  }, [position]);
+  }, [position, message]); // Include message as a dependency to re-render when it changes
 
   return (
     <Container>

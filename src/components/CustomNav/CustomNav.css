@@ -1,20 +1,24 @@
+/* CustomNav.css */
+
+/* Logo styling */
 .thunder-logo {
   width: 60px; /* Adjust the size as needed */
   height: 60px;
   margin-right: 8px; /* Add spacing between the logo and text */
 }
 
+/* Navbar Container */
 .custom-nav {
   background-color: #212121;
   border-bottom: 5px solid #ececec;
   margin-top: -10px;
-margin-block-end: 1px; 
+  margin-block-end: 1px; 
 }
 
+/* Navbar Styling */
 .gaming-navbar {
   background-color: #f9f9f9;
   border-bottom: 5px solid #000000;
-  
 }
 
 /* Navbar Brand */
@@ -31,10 +35,6 @@ margin-block-end: 1px;
   color: #686766;
 }
 
-
-
-
-
 /* Navbar Links */
 .navbar-nav {
   align-items: center;
@@ -46,9 +46,12 @@ margin-block-end: 1px;
   transition: color 0.3s, background 0.3s, box-shadow 0.3s;
   text-decoration: none;
   margin: 0 10px;
+  padding: 8px 12px; /* Added padding for better spacing */
+  border-radius: 5px; /* Rounded corners for the links */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Hover effect for all links */
 .gaming-link:hover {
   color: #fff;
   background: linear-gradient(45deg, #686766, #8a8887);
@@ -56,6 +59,7 @@ margin-block-end: 1px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Bold class for important links */
 .gaming-bold {
   font-weight: bold;
 }
@@ -80,10 +84,14 @@ margin-block-end: 1px;
   font-weight: bold;
 }
 
-/* Media queries and other styles as needed */
-
+/* Mobile responsiveness */
 @media (max-width: 576px) {
   .navbar-toggler-icon {
     font-size: 20px;
+  }
+
+  .gaming-link {
+    font-size: 16px;
+    margin: 5px 10px;
   }
 }

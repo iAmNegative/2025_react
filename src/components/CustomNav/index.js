@@ -61,22 +61,27 @@ const CustomNav = () => {
               <>
                 <NavItem>
                   <NavLink tag={Link} to="/profile" className="gaming-link gaming-bold">
-                    Profile
+                    Profile📑
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={Link} to="/messages" className="gaming-link gaming-bold">
-                    Friends
+                    Friends👥
                   </NavLink>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink tag={Link} to="/Images" className="gaming-link">
                     Images
                   </NavLink>
+                </NavItem> */}
+                <NavItem>
+                  <NavLink tag={Link} to="/your-location" className="gaming-link gaming-bold">
+                    My Location📍
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} to="/your-location" className="gaming-link">
-                    My Location
+                  <NavLink tag={Link} to="/Movies" className="gaming-link gaming-bold">
+                   Upcoming Movies🎬
                   </NavLink>
                 </NavItem>
                 <NavItem className="ml-auto">

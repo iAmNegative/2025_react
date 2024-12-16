@@ -14,9 +14,11 @@ import Posts from "./components/Posts";
 import VideoChat from "./components/VideoChat";
 import YourLocationMap from "./components/YourLocationMap";
 import FriendLocation from "./components/FriendLocation";
+import Movies from "./components/Movies";
 import socket from "socket.io-client";
 import { API_BASE_URL } from "./helpers";
 import { userData } from "./helpers";
+
 
 
 
@@ -25,6 +27,7 @@ function App() {
   const TOKEN_EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes in milliseconds
 
   const socketInstance = socket(API_BASE_URL); // Initialize Socket.IO once
+  const loggedInUserName = userData().username;
 
 
   const [loggedIn, setLoggedIn] = useState(false);
@@ -72,7 +75,7 @@ function App() {
            
           console.log(` request code 3 :  send to server : lan ${localStorage.getItem("lan")} ,  ${localStorage.getItem("long")} to  ${senderUser1} , and i am login as ${loggedInUserId} `);
   
-          socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserId,
+          socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserName,
             lan:  localStorage.getItem("lan"),
             long:  localStorage.getItem("long"),
           });
@@ -115,6 +118,8 @@ function App() {
           <Route path="/video-chat/:id" element={<VideoChat />} />
           <Route path="/your-location" element={<YourLocationMap />} /> {/* Add this route */}
           <Route path="/friend-location/:id" element={<FriendLocation/>} /> {/* Add this route */}
+          <Route path="/movies" element={<Movies/>} />
+
 
 
 
