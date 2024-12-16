@@ -1,12 +1,13 @@
 /* Movies.css */
 .movies-container {
   margin: 20px;
-  padding: 20px;
+  padding: 10px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Month Selector */
 .month-selector {
   display: flex;
   align-items: center;
@@ -35,6 +36,7 @@ select:focus, select:hover {
   background-color: #ecf8ff;
 }
 
+/* Navigation buttons */
 .navigation-buttons {
   display: flex;
   justify-content: center;
@@ -63,6 +65,7 @@ select:focus, select:hover {
   cursor: not-allowed;
 }
 
+/* Movie list and layout */
 .movie-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -112,4 +115,81 @@ select:focus, select:hover {
   font-size: 18px;
   color: #95a5a6;
   margin-top: 20px;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For small screens (mobile) */
+@media (max-width: 768px) {
+  .movies-container {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .month-selector label {
+    font-size: 14px;
+  }
+
+  select {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .navigation-buttons button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .movie-item {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .movie-title {
+    font-size: 16px;
+  }
+
+  .movie-release-date {
+    font-size: 12px;
+  }
+
+  .movie-poster {
+    height: 160px;
+  }
+
+  /* Adjust grid for smaller screens */
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+/* For medium to large screens (laptop and tablet) */
+@media (min-width: 769px) {
+  .movie-item {
+    padding: 15px;
+  }
+
+  .movie-title {
+    font-size: 18px;
+  }
+
+  .movie-release-date {
+    font-size: 14px;
+  }
+
+  .movie-poster {
+    height: 200px;
+  }
+
+  /* Adjust grid for wider screens */
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+/* For very large screens (desktop and up) */
+@media (min-width: 1200px) {
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
 }
