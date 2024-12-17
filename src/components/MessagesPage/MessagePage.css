@@ -86,4 +86,21 @@
     margin-top: 10px;
     color: #28a745;
   }
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .status-dot.online {
+    background-color: green;
+  }
+  
+  .status-dot.offline {
+    background-color: gray;
+  }
+  
+  
   
