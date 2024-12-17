@@ -1,52 +1,74 @@
-/* YourLocationMap.css */
-
-/* Full-screen map container styling */
+/* Container for the map and other content */
 .map-container {
-  height: 100vh; /* Occupy the full viewport height */
-  width: 100%;   /* Occupy the full viewport width */
-  align-self: start;
-  /* Occupy the full viewport width */
-  padding-top: 2%; 
-  padding-bottom: 45%;
-  padding-left:20px  ;
-  padding-right: 20px;
+  position: relative;
+  width: 100%;
+  height: 500px; /* Customize based on your needs */
+  background-color: #f0f0f0; /* Light background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Loading and error messages styling */
+/* Loading spinner style */
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Message container for loading and error states */
 .message-container {
-  text-align: center;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .message-container h2 {
   font-size: 24px;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
 .message-container p {
   font-size: 16px;
-  margin: 0;
+  text-align: center;
 }
 
-/* Popup customization (optional, depends on Leaflet defaults) */
-.leaflet-popup-content-wrapper {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
+.message-container.error {
+  color: #e74c3c; /* Red color for errors */
 }
 
-.leaflet-popup-content-wrapper h2 {
-  font-size: 18px;
-  margin: 0 0 10px;
+.message-container.loading {
+  color: #3498db; /* Blue color for loading state */
 }
 
-/* Custom marker styles */
-.custom-marker-icon {
-  width: 38px; /* Set marker width */
-  height: 50px; /* Set marker height */
-  background-size: cover; /* Ensure the image covers the container */
-  border-radius: 50%; /* Optional: Make marker circular */
-  border: 2px solid #000; /* Optional: Add a border */
+/* Styling for the map */
+.map-container {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.map-container .leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Custom marker hover effect */
+.leaflet-marker-icon {
+  transition: transform 0.3s ease;
+}
+
+.leaflet-marker-icon:hover {
+  transform: scale(1.2);
 }

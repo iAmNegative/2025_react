@@ -1,51 +1,115 @@
-/* YourLocationMap.css */
-
-/* Full-screen map container styling */
+/* Full-screen map container with modern styling */
 .map-container {
-  height: 100vh; /* Occupy the full viewport height */
-  width: 100%;   /* Occupy the full viewport width */
-
-  padding-top: 2%; 
-  padding-bottom: 45%;
-  padding-left:20px  ;
-  padding-right: 20px;
+  height: 90vh; /* 90% of viewport height */
+  width: 100%;
+  margin: 20px auto; /* Add spacing around the map */
+  border-radius: 25px; /* Smooth rounded corners on all sides */
+  overflow: hidden; /* Ensure content stays inside bounds */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  position: relative;
+  padding: 20px; /* Add padding inside the container */
+  background-color: #fff; /* Ensure background color inside the map container */
 }
 
-/* Loading and error messages styling */
+/* Loading and error messages with gradient background */
 .message-container {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Blue gradient background */
+  color: #fff; /* White text */
+  font-family: 'Roboto', Arial, sans-serif; /* Font styling */
+  border-radius: 25px; /* Rounded corners */
   padding: 20px;
-  font-family: Arial, sans-serif;
-  color: #333;
 }
 
 .message-container h2 {
-  font-size: 24px;
+  font-size: 28px;
   margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .message-container p {
-  font-size: 16px;
+  font-size: 18px;
   margin: 0;
 }
 
-/* Popup customization (optional, depends on Leaflet defaults) */
+/* Leaflet popup customization */
 .leaflet-popup-content-wrapper {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
+  font-family: 'Roboto', Arial, sans-serif;
+  background: #2193b0; /* Blue background */
+  color: #fff; /* White text */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
 }
 
-.leaflet-popup-content-wrapper h2 {
+.leaflet-popup-content {
+  margin: 0;
+  font-weight: 500;
+}
+
+.leaflet-popup-tip-container {
+  display: none; /* Remove the triangle pointer from the popup */
+}
+
+/* Hide popup close button */
+.leaflet-popup-close-button {
+  display: none !important;
+}
+
+/* Leaflet zoom controls customization */
+.leaflet-control-zoom a {
+  background-color: #2193b0;
+  color: #fff;
+  border-radius: 5px;
   font-size: 18px;
-  margin: 0 0 10px;
 }
 
-/* Custom marker styles */
-.custom-marker-icon {
-  width: 38px; /* Set marker width */
-  height: 50px; /* Set marker height */
-  background-size: cover; /* Ensure the image covers the container */
-  border-radius: 50%; /* Optional: Make marker circular */
-  border: 2px solid #000; /* Optional: Add a border */
+.leaflet-control-zoom a:hover {
+  background-color: #6dd5ed;
+}
+
+/* Make the map responsive for different screen sizes */
+@media (max-width: 768px) {
+  .map-container {
+    height: 80vh; /* Reduce map height on smaller screens */
+    padding: 10px; /* Less padding on small screens */
+  }
+
+  .message-container {
+    height: 80vh; /* Adjust message container height on smaller screens */
+  }
+
+  .message-container h2 {
+    font-size: 24px; /* Smaller font size on smaller screens */
+  }
+
+  .message-container p {
+    font-size: 16px; /* Smaller text for better readability */
+  }
+}
+
+@media (max-width: 480px) {
+  .map-container {
+    height: 75vh; /* Further reduce map height on very small screens */
+    padding: 5px; /* Minimal padding on very small screens */
+  }
+
+  .message-container {
+    height: 75vh; /* Adjust message container for very small screens */
+  }
+
+  .message-container h2 {
+    font-size: 20px; /* Even smaller font size for mobile */
+  }
+
+  .message-container p {
+    font-size: 14px; /* Further reduce font size */
+  }
 }
