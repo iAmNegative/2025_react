@@ -8,30 +8,29 @@ import { Container } from "reactstrap";
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentMonth, setCurrentMonth] = useState(1);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchMovies();
-  }, [currentMonth]);
+  }, []);
 
   const fetchMovies = async () => {
     setLoading(true);
     setError(null);
 
     const options = {
-      method: 'POST',
-      url: 'https://http-cors-proxy.p.rapidapi.com/',
+      method: "POST",
+      url: "https://http-cors-proxy.p.rapidapi.com/",
       headers: {
-        'x-rapidapi-key': '7cfd5c7a86msh9bb0d440cd13288p1436e4jsnee71829833d2',
-        'x-rapidapi-host': 'http-cors-proxy.p.rapidapi.com',
-        'Content-Type': 'application/json',
-        Origin: 'www.example.com',
-        'X-Requested-With': 'www.example.com'
+        "x-rapidapi-key": "7cfd5c7a86msh9bb0d440cd13288p1436e4jsnee71829833d2",
+        "x-rapidapi-host": "http-cors-proxy.p.rapidapi.com",
+        "Content-Type": "application/json",
+        Origin: "www.example.com",
+        "X-Requested-With": "www.example.com",
       },
       data: {
-        url: `https://www.filmjabber.com/movie-release-dates/2025/${currentMonth}/`
-      }
+        url: "https://www.imdb.com/calendar/", // IMDb Calendar URL
+      },
     };
 
     try {
@@ -40,32 +39,32 @@ const Movies = () => {
       const $ = load(html);
       const movieData = [];
 
-      let currentReleaseDate = "";
-      $("#content")
-        .find("h2, .table_row")
-        .each((_, element) => {
-          const tag = $(element).prop("tagName");
+      // Extract the JSON content from the script tag
+      const scriptContent = $("#__NEXT_DATA__").html();
+      const jsonData = JSON.parse(scriptContent);
 
-          if (tag === "H2") {
-            currentReleaseDate = $(element).text().trim();
-          } else if ($(element).hasClass("table_row")) {
-            const title = $(element).find(".index_link a").text().trim();
-            const poster =
-              $(element).find(".movie_poster img").attr("src") ||
-              "https://via.placeholder.com/150";
+      // Traverse JSON to get movies
+      const groups = jsonData.props.pageProps.groups;
 
-            if (title) {
-              movieData.push({
-                title,
-                releaseDate: currentReleaseDate,
-                image: poster.startsWith("http")
-                  ? poster
-                  : `https://www.filmjabber.com${poster}`,
-              });
-            }
-          }
+      groups.forEach((group) => {
+        const releaseDate = group.group; // "Dec 20, 2024"
+        group.entries.forEach((entry) => {
+          const title = entry.titleText;
+          const poster =
+            entry.imageModel?.url || "https://via.placeholder.com/150";
+          const genres = entry.genres ? entry.genres.join(", ") : "Unknown";
+          const release = new Date(entry.releaseDate).toDateString();
+
+          movieData.push({
+            title,
+            releaseDate: releaseDate || release,
+            image: poster,
+            genres,
+          });
         });
+      });
 
+      console.log("Movies:", movieData);
       setMovies(movieData);
     } catch (error) {
       console.error("Error fetching movies:", error);
@@ -75,58 +74,18 @@ const Movies = () => {
     }
   };
 
-  const handlePrevMonth = () => {
-    if (currentMonth > 1) {
-      setCurrentMonth(currentMonth - 1);
-    }
-  };
-
-  const handleNextMonth = () => {
-    if (currentMonth < 12) {
-      setCurrentMonth(currentMonth + 1);
-    }
-  };
-
   return (
     <Container>
       <CustomNav />
       <div className="movies-container">
-        <div className="month-selector">
-          <label>Select Month: </label>
-          <select
-            value={currentMonth}
-            onChange={(e) => setCurrentMonth(Number(e.target.value))}
-          >
-            <option value={1}>January</option>
-            <option value={2}>February</option>
-            <option value={3}>March</option>
-            <option value={4}>April</option>
-            <option value={5}>May</option>
-            <option value={6}>June</option>
-            <option value={7}>July</option>
-            <option value={8}>August</option>
-            <option value={9}>September</option>
-            <option value={10}>October</option>
-            <option value={11}>November</option>
-            <option value={12}>December</option>
-          </select>
-        </div>
-
-        <div className="navigation-buttons">
-          <button onClick={handlePrevMonth} disabled={currentMonth === 1}>
-            Back
-          </button>
-          <button onClick={handleNextMonth} disabled={currentMonth === 12}>
-            Next
-          </button>
-        </div>
+        <h1 className="movies-heading">Upcoming Movie Releases</h1>
 
         {loading ? (
           <p className="loading">Loading movies...</p>
         ) : error ? (
           <p className="error">{error}</p>
         ) : movies.length === 0 ? (
-          <p className="no-movies">No movies found for the selected month.</p>
+          <p className="no-movies">No movies found.</p>
         ) : (
           <div className="movie-list">
             {movies.map((movie, index) => (
@@ -137,7 +96,10 @@ const Movies = () => {
                   className="movie-poster"
                 />
                 <h2 className="movie-title">{movie.title}</h2>
-                <p className="movie-release-date">Release Date: {movie.releaseDate}</p>
+                <p className="movie-release-date">
+                  Release Date: {movie.releaseDate}
+                </p>
+                <p className="movie-genres">Genres: {movie.genres}</p>
               </div>
             ))}
           </div>
