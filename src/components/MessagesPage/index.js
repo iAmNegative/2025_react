@@ -69,7 +69,7 @@ const MessagesPage = () => {
                     {user.firstName} {user.lastName}
                   </p>
                   <p className="username">{user.username}</p>
-                  <p className="email">{user.email}</p>
+                  {/* <p className="email">{user.email}</p> */}
                   {/* Display green dot if the user is online */}
                   <span
                     className={`status-dot ${
