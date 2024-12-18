@@ -27,7 +27,7 @@ function App() {
   const TOKEN_EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes in milliseconds
 
   const socketInstance = socket(API_BASE_URL); // Initialize Socket.IO once
-  const loggedInUserName = userData().username;
+ 
 
 
   const [loggedIn, setLoggedIn] = useState(false);
@@ -93,31 +93,25 @@ function App() {
   useEffect(() => {
   
       socketInstance.on("findCord", (data) => {
-  
-            // console.log(` request code 2 :  reciver to user server ${targetUser1} and i am login as ${loggedInUserId} `);
-  
-  
+    
         const { targetUser1, senderUser1 } = data;
         const loggedInUserId = userData().id; // Get the logged-in user's ID
-        
-        // console.log(`findLocationSend: Target user ${targetUser1}, Sender user ${senderUser1}`);
-  
-        // socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserId,
-        //   lan:  localStorage.getItem("lan"),
-        //   long:  localStorage.getItem("long"),
-        // });
-        console.log(` request code 2 :  reciver to user server ${targetUser1} and i am login as ${loggedInUserId} `);
-  
+
+        console.log(`Step 3 = location request recived to  all user`  );
+
         if (targetUser1 == loggedInUserId) {
            
-          console.log(` request code 3 :  send to server : lan ${localStorage.getItem("lan")} ,  ${localStorage.getItem("long")} to  ${senderUser1} , and i am login as ${loggedInUserId} `);
-  
+          console.log(`Step 4 = location request recived to  targetUser  ${targetUser1}`  );  
+         
+          const loggedInUserName = userData().username;
+
           socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserName,
             lan:  localStorage.getItem("lan"),
             long:  localStorage.getItem("long"),
           });
-  
-    
+
+          console.log(`Step 5 =  ${targetUser1} location sending of ${senderUser1} `  );  
+
         }
   
         

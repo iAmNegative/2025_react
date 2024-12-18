@@ -32,18 +32,18 @@ const FriendLocation = () => {
   useEffect(() => {
     // Notify backend to find location
     socketInstance.emit("findLocationSend", { targetUser, senderUser: loggedInUserId });
-    console.log(`Request code 1: Sent to server`);
+    console.log(`Step 1 = ${loggedInUserId}  is asking ${targetUser} location`  );
 
     // Listen for location data
     socketInstance.on("sendCordToSender", (data) => {
       const { senderUser1, targetUser1, lan, long } = data;
 
-      console.log(`sendCordToSender: Sender user ${senderUser1}`);
+      console.log(`Step 8 =  ${targetUser1}  ${lan} and  ${long} location  recived  to  all user`  );  
 
       if (senderUser1 === loggedInUserId) {
-        console.log(
-          `senderUser1 === loggedInUserId: Target user ${targetUser1}, Sender user ${senderUser1}`
-        );
+
+        console.log(`Step 9 =  ${targetUser1}  ${lan} and  ${long} location  recived  to  ${senderUser1} `  );  
+
         setMessage(`${targetUser1} is here!`); // Dynamically set the message
         setPosition([lan, long]); // Set friend's position
       }
