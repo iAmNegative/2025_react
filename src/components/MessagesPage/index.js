@@ -8,6 +8,7 @@ import { API_BASE_URL } from "../../helpers";
 import socket from "socket.io-client"; // Import the socket instance
 
 const { jwt } = userData();
+const {id } = userData();
 const socketInstance = socket(API_BASE_URL); // Use the same socket instance as in App.js
 
 const MessagesPage = () => {
@@ -23,9 +24,11 @@ const MessagesPage = () => {
     // Socket event listener for UserOnline
     socketInstance.on("UserOnline", (data) => {
       const { userId } = data;
-      console.log("Received UserOnline event for userId:", userId);
+      if ( userId !== null && userId !== id) {
+        // Your logic here
+        console.log("Received UserOnline event for userId:", userId);
 
-      // Add the userId to the online users set and update last event time
+              // Add the userId to the online users set and update last event time
       setOnlineUsers((prevOnlineUsers) => {
         const updatedSet = new Set(prevOnlineUsers);
         updatedSet.add(userId); // Add the userId to the set
@@ -34,27 +37,14 @@ const MessagesPage = () => {
 
       // Update the last event time to the current time
       setLastEventTime(Date.now());
-    });
 
-    // Socket event listener for UserOffline
-    socketInstance.on("UserOffline", (data) => {
-      const { userId } = data;
-      console.log("Received UserOffline event for userId:", userId);
+      }
 
-      // Remove the userId from the online users set and update last event time
-      setOnlineUsers((prevOnlineUsers) => {
-        const updatedSet = new Set(prevOnlineUsers);
-        updatedSet.delete(userId); // Remove the userId from the set
-        return updatedSet;
-      });
-
-      // Update the last event time to the current time
-      setLastEventTime(Date.now());
     });
 
     // Set all statuses to offline if no UserOnline event is received in the last 10 seconds
     const checkForTimeout = setInterval(() => {
-      if (Date.now() - lastEventTime > 8000) {
+      if (Date.now() - lastEventTime > 10000) {
         console.log("No UserOnline event received for the last 10 seconds. Setting all statuses to offline.");
 
         // Reset online users set (set all users to offline)
