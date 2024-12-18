@@ -10,14 +10,14 @@
 /* Navbar Container */
 .custom-nav {
   background-color: #212121;
-  border-bottom: 5px solid #ececec;
+  border-bottom: 5px solid #e3eacb;
   margin-top: -10px;
   margin-block-end: 1px; 
 }
 
 /* Navbar Styling */
 .gaming-navbar {
-  background-color: #f9f9f9;
+  background-color: #c5c5c5;
   border-bottom: 5px solid #000000;
 }
 

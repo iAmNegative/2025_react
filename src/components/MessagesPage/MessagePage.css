@@ -86,21 +86,49 @@
     margin-top: 10px;
     color: #28a745;
   }
-  .status-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 10px;
-  }
-  
-  .status-dot.online {
-    background-color: green;
-  }
-  
-  .status-dot.offline {
-    background-color: gray;
-  }
-  
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.status-dot.online {
+  background-color: green;
+}
+
+.status-dot.offline {
+  background-color: gray;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px; /* Space between username and status dot */
+}
+
+.online {
+  background-color: green; /* Green for online users */
+}
+
+.offline {
+  background-color: gray; /* Gray for offline users */
+}
+
+.status-text {
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.view-button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+
   
   

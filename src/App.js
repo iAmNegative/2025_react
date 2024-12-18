@@ -19,18 +19,34 @@ import socket from "socket.io-client";
 import { API_BASE_URL } from "./helpers";
 import { userData } from "./helpers";
 
-
-
-
-
 function App() {
   const TOKEN_EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes in milliseconds
 
   const socketInstance = socket(API_BASE_URL); // Initialize Socket.IO once
   const loggedInUserName = userData().username;
 
-
   const [loggedIn, setLoggedIn] = useState(false);
+
+  // Separate useEffect to log userId and emit 'UserOnline' via socket every 5 seconds
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const user = localStorage.getItem("user");
+      if (user) {
+        const parsedUser = JSON.parse(user); // Parse the user object
+        const userId = parsedUser.id; // Access the userId from the parsed object
+        if (userId) {
+          console.log("Logged-in User ID:", userId); // Log the userId
+          // socketInstance.emit("UserOnline", userId);
+          socketInstance.emit("UserOnline", {
+            userId
+          }); // Emit 'UserOnline' with the userId to the server
+        }
+      }
+    }, 5000); // Log and emit every 5 seconds
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []); // This effect runs once when the component is mounted
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -44,8 +60,6 @@ function App() {
         localStorage.removeItem("loginTime");
         localStorage.removeItem("userData");
         window.location.href = "/#/login"; // Redirect to the login page after expiration
-
-
       } else {
         // Token still valid
         setLoggedIn(true);
@@ -54,41 +68,20 @@ function App() {
   }, []);
 
   useEffect(() => {
-  
-      socketInstance.on("findCord", (data) => {
-  
-            // console.log(` request code 2 :  reciver to user server ${targetUser1} and i am login as ${loggedInUserId} `);
-  
-  
-        const { targetUser1, senderUser1 } = data;
-        const loggedInUserId = userData().id; // Get the logged-in user's ID
-        
-        // console.log(`findLocationSend: Target user ${targetUser1}, Sender user ${senderUser1}`);
-  
-        // socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserId,
-        //   lan:  localStorage.getItem("lan"),
-        //   long:  localStorage.getItem("long"),
-        // });
-        console.log(` request code 2 :  reciver to user server ${targetUser1} and i am login as ${loggedInUserId} `);
-  
-        if (targetUser1 == loggedInUserId) {
-           
-          console.log(` request code 3 :  send to server : lan ${localStorage.getItem("lan")} ,  ${localStorage.getItem("long")} to  ${senderUser1} , and i am login as ${loggedInUserId} `);
-  
-          socketInstance.emit("sendCordSend", {  senderUser1, targetUser1: loggedInUserName,
-            lan:  localStorage.getItem("lan"),
-            long:  localStorage.getItem("long"),
-          });
-  
-    
-        }
-  
-        
-      });
-  
-  },[]);
+    socketInstance.on("findCord", (data) => {
+      const { targetUser1, senderUser1 } = data;
+      const loggedInUserId = userData().id; // Get the logged-in user's ID
 
- 
+      if (targetUser1 === loggedInUserId) {
+        socketInstance.emit("sendCordSend", {
+          senderUser1,
+          targetUserName: userData().username,
+          lan: localStorage.getItem("lan"),
+          long: localStorage.getItem("long"),
+        });
+      }
+    });
+  }, []);
 
   const handleLogin = (token) => {
     localStorage.setItem("token", token);
@@ -116,14 +109,9 @@ function App() {
           <Route path="/images" element={<MyImage />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/video-chat/:id" element={<VideoChat />} />
-          <Route path="/your-location" element={<YourLocationMap />} /> {/* Add this route */}
-          <Route path="/friend-location/:id" element={<FriendLocation/>} /> {/* Add this route */}
-          <Route path="/movies" element={<Movies/>} />
-
-
-
-
-
+          <Route path="/your-location" element={<YourLocationMap />} />
+          <Route path="/friend-location/:id" element={<FriendLocation />} />
+          <Route path="/movies" element={<Movies />} />
         </Routes>
       </HashRouter>
     </Container>
