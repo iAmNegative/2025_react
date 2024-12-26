@@ -36,21 +36,19 @@ const MessageViewPage = () => {
 
 
   }, []);
-
   const fetchMessages = async () => {
     try {
-      const  response = await getUsersMessage(loggedInUserId, receiverUserId, jwt);
-      setMessages(response);
+      const response = await getUsersMessage(loggedInUserId, receiverUserId, jwt);
+      
+      // Sort messages by createdAt in descending order
+      const sortedMessages = response.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      
+      setMessages(sortedMessages);
       setLoading(false);
-
-       scrollMessageListToBottom();
-
+      scrollMessageListToBottom();
     } catch (error) {
       console.error("Error fetching messages:", error);
     }
-
-    scrollMessageListToBottom();
-
   };
 
   useEffect(() => {

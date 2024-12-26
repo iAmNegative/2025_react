@@ -1,0 +1,92 @@
+.login {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 20px;
+  background-color: #292c35;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+.login h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.login input {
+  width: 100%; /* Make the text box wider */
+  padding: 10px;
+  border: 2px solid #444;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  min-height: 60px;
+  background-color: #f8faff;
+  color: #000000;
+}
+
+.login input:focus {
+  outline: none;
+  border-color: #bebebe;
+  background-color: #838383;
+}
+
+.login button {
+  background-color: #951313;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.login button:hover {
+  background-color: #720000;
+}
+
+.login h6 {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login h6 a {
+  color: #00cc99;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login h6 a:hover {
+  color: #008866;
+}
+
+
+
+
+h2 {
+font-size: 24px;
+margin-bottom: 20px;
+}
+
+/* Change the color of "Thunder" to yellow */
+h2 span.thunder {
+color: rgb(224, 27, 13);
+}
+
+/* Change the color of "Chat" to green */
+h2 span.chat {
+color: rgb(175, 224, 15);
+}     this is before and   body {
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg, #1e1e1e, #292c35);
+color: white;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
